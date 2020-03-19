@@ -21,8 +21,8 @@ const dipatchToggleFavorite = () => {
       headerStyle: { backgroundColor: "#c1c1c1" },
       headerTintColor: 'black',
       headerTitleContainerStyle: {
-        width: Platform.OS === 'ios' ? '60%' : '75%',
-        alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+        width: Platform.OS === 'ios' ? '60%' : '60%',
+        alignItems: Platform.OS === 'ios' ? 'center' : 'center',
       }
       ,
       headerRight: () => (<FavButton {...props} iconName={currentMealIsFavorite?"ios-star":"ios-star-outline"} color="#000" onPressing={dipatchToggleFavorite} />),

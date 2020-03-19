@@ -24,7 +24,7 @@ const FavoritesScreen = props => {
 
   if(meals.length===0 || !meals){
     return (<View style={styles.content}>
-      <Text style={styles.txt}>No meal found ! Please start adding favorite meals by toggling the star icon in meadl details :)</Text>
+      <Text style={styles.txt}>No meal found ! Please start adding favorite meals by toggling the star icon in meal details :)</Text>
     </View>)
 
   }else{
