@@ -1,9 +1,12 @@
 import React, { useLayoutEffect } from 'react';
-import {  MEALS } from '../data/dummy-data'
+import {useSelector} from 'react-redux';
 import MealList from '../components/MealList';
 
 
-const CategoryMealScreen = props => {  
+const CategoryMealScreen = props => { 
+  
+  const availableMeals=useSelector(state=>state.mealsReducer.filteredMeals);
+
   useLayoutEffect(() => {
     props.navigation.setOptions(
       {
@@ -16,7 +19,7 @@ const CategoryMealScreen = props => {
   }, [props.route.params])
 
   const catId = props.route.params.id;
-  const meals = MEALS.filter(meal => meal.categoryIds.indexOf(catId) >= 0);
+  const meals = availableMeals.filter(meal => meal.categoryIds.indexOf(catId) >= 0);
   
 
   return (

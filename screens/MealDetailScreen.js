@@ -1,11 +1,11 @@
 import React, { useLayoutEffect } from 'react';
 import { ScrollView, View, Text, Button, StyleSheet, Image } from 'react-native';
-import { MEALS } from '../data/dummy-data'
+import {useSelector} from 'react-redux';
 import FavButton from '../components/FavButton'
 
 const MealDetailScreen = props => {
   const mealId = props.route.params.id;
-  const oneMeal = MEALS.find(meal => meal.id === mealId);
+  const oneMeal=useSelector(state=>state.mealsReducer.meals.find(meal => meal.id === mealId));
 
   const markAsFav = () => {
     console.log('marked as fav');

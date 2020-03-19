@@ -1,6 +1,6 @@
 import React,{useLayoutEffect} from 'react';
 import { StyleSheet } from 'react-native';
-import {MEALS} from '../data/dummy-data'
+import {useSelector} from 'react-redux';
 import MealList from '../components/MealList'
 import Colors from "../constants/Colors"
 import FavButton from '../components/FavButton'
@@ -8,8 +8,7 @@ import FavButton from '../components/FavButton'
 const FavoritesScreen = props => {
 
 
-  const catId = "c2";
-  const meals = MEALS.filter(meal => meal.categoryIds.indexOf(catId) >= 0);
+  const meals=useSelector(state=>state.mealsReducer.favoriteMeals);
 
 
   useLayoutEffect(() => {
@@ -27,12 +26,6 @@ const FavoritesScreen = props => {
     <MealList {...props} listData={meals}/>
   );
 
-  
-  // return (
-  //   <View style={styles.screen}>
-  //     <Text>The Favorites Screen!</Text>
-  //   </View>
-  // );
 };
 
 const styles = StyleSheet.create({
