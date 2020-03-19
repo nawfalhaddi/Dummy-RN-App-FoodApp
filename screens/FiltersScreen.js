@@ -2,6 +2,8 @@ import React , {useLayoutEffect,useState} from 'react';
 import { View, Text, StyleSheet, Switch } from 'react-native';
 import Colors from '../constants/Colors'
 import FavButton from '../components/FavButton'
+import { useDispatch } from 'react-redux';
+import {setFilters} from '../store/actions/meal'
 
 
 const FilterSwitch=props=>{
@@ -20,6 +22,7 @@ const FiltersScreen = props => {
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
 
+  const dispatch=useDispatch();
   const saveFilters=()=>{
     const appliedFilters={
       gluteenFree:isGluteenFree,
@@ -27,8 +30,7 @@ const FiltersScreen = props => {
       vegan:isVegan,
       vegetarian:isVegetarian
     }
-    console.log(appliedFilters);
-    
+    dispatch(setFilters(appliedFilters));
   }
 
   

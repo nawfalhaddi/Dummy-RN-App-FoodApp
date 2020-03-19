@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Blank Template",
-    "slug": "project4",
+    "name": "Dummy FoodApp",
+    "slug": "foodapp",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "This is a dummy App where i'm practicing  React Navigation v5.0 and Redux",
+    "githubUrl": "https://github.com/nawfalhaddi/Dummy-RN-App-FoodApp"
   }
 }

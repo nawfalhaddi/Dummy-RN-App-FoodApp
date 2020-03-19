@@ -1,25 +1,34 @@
 import React, { useLayoutEffect } from 'react';
-import { ScrollView, View, Text, Button, StyleSheet, Image } from 'react-native';
-import {useSelector} from 'react-redux';
-import FavButton from '../components/FavButton'
+import { ScrollView, View, Text, Button, StyleSheet, Image,Platform } from 'react-native';
+import {useSelector,useDispatch} from 'react-redux';
+import FavButton from '../components/FavButton';
+import {toggleFavorite} from '../store/actions/meal'
 
 const MealDetailScreen = props => {
   const mealId = props.route.params.id;
   const oneMeal=useSelector(state=>state.mealsReducer.meals.find(meal => meal.id === mealId));
+const dispatch = useDispatch();
 
-  const markAsFav = () => {
-    console.log('marked as fav');
-  }
+const currentMealIsFavorite=useSelector(state=>state.mealsReducer.favoriteMeals.some(meal=>meal.id===mealId));
+
+const dipatchToggleFavorite = () => {
+  dispatch(toggleFavorite(mealId));
+}
 
   useLayoutEffect(() => {
     props.navigation.setOptions({
       title: oneMeal.title,
       headerStyle: { backgroundColor: "#c1c1c1" },
       headerTintColor: 'black',
-      headerRight: () => (<FavButton {...props} iconName="ios-star" color="black" onPressing={markAsFav} />),
+      headerTitleContainerStyle: {
+        width: Platform.OS === 'ios' ? '60%' : '75%',
+        alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+      }
+      ,
+      headerRight: () => (<FavButton {...props} iconName={currentMealIsFavorite?"ios-star":"ios-star-outline"} color="#000" onPressing={dipatchToggleFavorite} />),
     })
     return () => { };
-  }, [props.route.params.id])
+  }, [props.route.params.id,currentMealIsFavorite])
 
 
   return (
